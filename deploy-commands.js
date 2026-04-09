@@ -16,9 +16,27 @@ const commands = [
         .setDescription('Message to send')
         .setRequired(true)),
 
+ /*  new SlashCommandBuilder()
+    .setName('rules')
+    .setDescription('Make the bot send a message to a channel')
+    .addChannelOption(option =>
+      option
+        .setName('channel')
+        .setDescription('Channel to send the message to')
+        .setRequired(true))
+    .addStringOption(option =>
+      option
+        .setName('message')
+        .setDescription('Message to send')
+        .setRequired(true)),      */
+
+
+        
   new SlashCommandBuilder()
     .setName('vote')
-    .setDescription('voteees')
+    .setDescription('voteees'),
+
+
 ];
 
 const rest = new REST({ version: '10' }).setToken(process.env.DISCORD_TOKEN);
