@@ -3,12 +3,11 @@ const { Client, GatewayIntentBits, Partials,ActivityType } = require('discord.js
 
 
 
-
-
 const client = new Client({ intents: [
 GatewayIntentBits.Guilds,
     GatewayIntentBits.GuildMessageReactions,
     GatewayIntentBits.GuildMembers,
+    GatewayIntentBits.MessageContent
 ],
   partials: [
     Partials.Message,
@@ -22,7 +21,7 @@ client.once('ready', () => {
 
   
 
- client.user.setActivity('Use /vote', {
+ client.user.setActivity('Type /help for commands', {
     type: ActivityType.Watching,
   });
 
@@ -70,9 +69,10 @@ if (interaction.commandName === 'rules') {
 
 **8. GENERAL CONDUCT**• No doxxing or personal info• Keep drama private• Use common sense• Help build positive community
 
-**PUNISHMENT:** Warning → Mute → Temp Ban → Permanent Ban **SEVERE VIOLATIONS = IMMEDIATE BAN:** 
+**PUNISHMENT:** Warning → Mute → Temp Ban → Permanent Ban 
+**SEVERE VIOLATIONS = IMMEDIATE BAN:** 
 
-By reacting, you agree to follow these rules. Rules may be updated anytime.`;
+By reading, you agree to follow these rules. Rules may be updated anytime.`;
 
   await channel.send(rulesmess);
 
@@ -112,6 +112,79 @@ if (interaction.commandName === 'say') {
   });
 
 }
+if (interaction.commandName === 'info') {
+        return await interaction.reply({
+      content: `🗳️ **L2Ahyura GENERAL INFO**
+
+🔹  Version: High Five part 6
+🔹  XP/SP: 10x
+🔹  Adena: 10x
+🔹  Drop: 3x
+🔹  Spoil: 5x
+🔹  Max lvl: 85
+🔹  Max box: 1
+
+✅ Check our FAQs: https://l2ahyura.com/faq.php ;)`,
+      ephemeral: false // set to true if you want only the user to see it
+    });
+  }
+
+  if (interaction.commandName === 'premium') {
+        return await interaction.reply({
+      content: `🗳️ **Premium Packages**
+
+🔹  **Starter pack** 5€
+          🔹 +1 Premium Days
+          🔹 x5kk Adena
+          🔹 x10 VIP Coin
+          🔹 x3 Blessed Scroll Armor S
+🔹  **Bronze pack** 10€
+          🔹 +3 Premium Days
+          🔹 x10kk Adena
+          🔹 x20 VIP Coin
+          🔹 x3 Blessed Scroll Armor S
+          🔹 x1 Blessed Scroll Weapon S
+🔹  **Silver pack** 20€
+          🔹 +7 Premium Days
+          🔹 x20kk Adena
+          🔹 x50 VIP Coin
+          🔹 x5 Blessed Scroll Armor S
+          🔹 x2 Blessed Scroll Weapon S
+          🔹 x3 Giant's Codex
+🔹  **Gold pack** 50€
+          🔹 +15 Premium Days
+          🔹 x50kk Adena
+          🔹 x150 VIP Coin
+          🔹 x7 Blessed Scroll Armor S
+          🔹 x3 Blessed Scroll Weapon S
+          🔹 x5 Giant's Codex
+🔹  **Platinum pack** 100€
+          🔹 +31 Premium Days
+          🔹 x250kk Adena
+          🔹 x500 VIP Coin
+          🔹 x15 Blessed Scroll Armor S
+          🔹 x6 Blessed Scroll Weapon S
+          🔹 x25 Giant's Codex
+
+✅ Consider donating at https://l2ahyura.com/donate.php ;)`,
+      ephemeral: true // set to true if you want only the user to see it
+    });
+  }
+
+
+if (interaction.commandName === 'help') {
+        return await interaction.reply({
+      content: `🗳️ **COMMANDS**
+
+🔹  /info - Info on the server
+🔹  /vote - What websites can you vote on??
+🔹  /premium - What do our premium packages offer??
+
+✅ Consider donating at https://l2ahyura.com/donate.php ;)`,
+      ephemeral: true // set to true if you want only the user to see it
+    });
+  }
+
 
 
 if (interaction.commandName === 'vote') {
@@ -135,5 +208,7 @@ You can vote for us on the following sites:
 
 
 });
+
+
 
 client.login(process.env.DISCORD_TOKEN);

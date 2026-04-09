@@ -16,7 +16,7 @@ const commands = [
         .setDescription('Message to send')
         .setRequired(true)),
 
- /*  new SlashCommandBuilder()
+  new SlashCommandBuilder()
     .setName('rules')
     .setDescription('Make the bot send a message to a channel')
     .addChannelOption(option =>
@@ -28,14 +28,22 @@ const commands = [
       option
         .setName('message')
         .setDescription('Message to send')
-        .setRequired(true)),      */
+        .setRequired(true)),      
 
 
         
   new SlashCommandBuilder()
     .setName('vote')
-    .setDescription('voteees'),
-
+    .setDescription('Feel free to vote every 12 hours!'),
+ new SlashCommandBuilder()
+    .setName('info')
+    .setDescription('Checks the rates and general info of the server'),
+   new SlashCommandBuilder()
+    .setName('help')
+    .setDescription('What commands do I have?'),
+    new SlashCommandBuilder()
+    .setName('premium')
+    .setDescription('Info on our Premium Packages!'),
 
 ];
 
