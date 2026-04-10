@@ -1,6 +1,79 @@
 require('dotenv').config();
-const { Client, GatewayIntentBits, Partials,ActivityType } = require('discord.js');
+const { Client, GatewayIntentBits, Partials,ActivityType, EmbedBuilder, 
+ ActionRowBuilder,
+  ButtonBuilder,
+  ButtonStyle,
+  ComponentType
+ } = require('discord.js');
 
+
+const pages = [
+  new EmbedBuilder()
+    .setTitle('Server Features')
+    .setDescription(`⚙️ **AUTO SYSTEMS**
+
+🔹  Auto Play   |    .play
+🔹  Auto Potion    | .apon/.apoff
+🔹  Auto Loot
+🔹  Auto Skills Learn
+🔹  Subclass without Quest
+
+✅ Check it live!: https://l2ahyura.com/index.php ;)`),
+
+  new EmbedBuilder()
+    .setTitle('Server Features')
+    .setDescription(`👤 **NPC SERVICES**
+
+🔹  NPC Premium
+🔹  NPC Delevel
+🔹  NPC Class Master
+🔹  NPC Scheme Buffer
+🔹  NPC Vote Reward
+🔹  NPC Hero Manager
+
+✅ Check it live!: https://l2ahyura.com/index.php ;)`),
+
+  new EmbedBuilder()
+    .setTitle('Server Features')
+    .setDescription(`🫂 **COMMUNITY BOARD**
+
+🔹  Premium Access Buffer
+🔹  Main Shop (Free to use)
+🔹  Custom Teleport
+🔹  Services
+🔹  Rankings
+
+✅ Check it live!: https://l2ahyura.com/index.php ;)`),
+  new EmbedBuilder()
+    .setTitle('Server Features')
+    .setDescription(`🛡️ **COMBAT & Skills**
+
+🔹  Hero Skills on Subclass
+🔹  Global Chat at level 40
+🔹  Buffs Duration : 1 Hour
+🔹  Max Buffs: 30
+🔹  Songs/Dances: 12
+
+✅ Check it live!: https://l2ahyura.com/index.php ;)`),
+  new EmbedBuilder()
+    .setTitle('Server Features')
+    .setDescription(`🔨 **Rates & Enchant System**
+
+🔹  XP/SP: 10x
+🔹  Party XP/SP: 2x
+🔹  Adena: 20x
+🔹  Quest XP/SP: 2x
+🔹  Quest Adena: 5x
+🔹  Quest Item Drop: 2x
+🔹  Drop/Spoil: 3x
+🔹  Manor Drop: 3x
+
+🔹  Safe Enchant: +4
+🔹  Max Enchant: +16
+🔹  Enchant Rate: 66%
+
+✅ Check it live!: https://l2ahyura.com/index.php ;)`),
+];
 
 
 const client = new Client({ intents: [
@@ -28,6 +101,7 @@ client.once('ready', () => {
 
 });
 
+
 client.on('interactionCreate', async interaction => {
   if (!interaction.isChatInputCommand()) return;
 
@@ -36,6 +110,105 @@ client.on('interactionCreate', async interaction => {
 
   // interaction.member is a GuildMember in guilds
   const member = interaction.member;
+
+
+  if (interaction.commandName === 'features') {
+
+async function sendPaginated(interaction, pages, timeout = 60_000) {
+  let index = 0;
+
+  const page1 = new ButtonBuilder()
+    .setCustomId('page1')
+    .setLabel('1️⃣')
+    .setStyle(ButtonStyle.Secondary)
+    .setDisabled(index === 0);
+
+  const page2 = new ButtonBuilder()
+    .setCustomId('page2')
+    .setLabel('2️⃣')
+    .setStyle(ButtonStyle.Secondary)
+    .setDisabled(index === 1);
+  
+  const page3 = new ButtonBuilder()
+    .setCustomId('page3')
+    .setLabel('3️⃣')
+    .setStyle(ButtonStyle.Secondary)
+    .setDisabled(index === 2);
+
+  const page4 = new ButtonBuilder()
+    .setCustomId('page4')
+    .setLabel('4️⃣')
+    .setStyle(ButtonStyle.Secondary)
+    .setDisabled(index === 3);
+ 
+    const page5 = new ButtonBuilder()
+    .setCustomId('page5')
+    .setLabel('5️⃣')
+    .setStyle(ButtonStyle.Secondary)
+    .setDisabled(index === 4);
+
+
+
+  const row = new ActionRowBuilder().addComponents(page1, page2,page3,page4,page5);
+
+  await interaction.reply({
+    embeds: [pages[index]],
+    components: [row],
+    ephemeral: true
+  });
+
+  const message = await interaction.fetchReply();
+
+  const collector = message.createMessageComponentCollector({
+    componentType: ComponentType.Button,
+    time: timeout,
+  });
+
+  collector.on('collect', async (i) => {
+    // Lock buttons to command user
+    if (i.user.id !== interaction.user.id) {
+      return i.reply({ content: 'This isn’t for you 🙂', ephemeral: true });
+    }
+
+    if (i.customId === 'close') {
+      collector.stop();
+      return i.update({ components: [] });
+    }
+
+    if (i.customId === 'page1') index=0;
+    if (i.customId === 'page2') index=1;
+    if (i.customId === 'page3') index=2;
+    if (i.customId === 'page4') index=3;
+    if (i.customId === 'page5') index=4;
+
+    page1.setDisabled(index === 0);
+    page2.setDisabled(index === 1);
+    page3.setDisabled(index === 2);
+    page4.setDisabled(index === 3);
+    page5.setDisabled(index === 4);
+
+    await i.update({
+      embeds: [pages[index]],
+      components: [row],
+    });
+  });
+
+ 
+}
+
+await sendPaginated(interaction, pages);
+  }
+
+
+
+
+
+
+
+
+
+
+
 
 if (interaction.commandName === 'rules') {
 
@@ -65,9 +238,9 @@ if (interaction.commandName === 'rules') {
 
 **4. GAME-RELATED RULES**• No cheats/hacks/exploits discussion• Report bugs to staff• No real-money trading (RMT)• Keep spoilers in appropriate channels
 
-**7. STAFF AND MODERATION**• Follow staff instructions• No public arguing with staff• Appeal via tickets• Staff decisions are final
+**5. STAFF AND MODERATION**• Follow staff instructions• No public arguing with staff• Appeal via tickets• Staff decisions are final
 
-**8. GENERAL CONDUCT**• No doxxing or personal info• Keep drama private• Use common sense• Help build positive community
+**6. GENERAL CONDUCT**• No doxxing or personal info• Keep drama private• Use common sense• Help build positive community
 
 **PUNISHMENT:** Warning → Mute → Temp Ban → Permanent Ban 
 **SEVERE VIOLATIONS = IMMEDIATE BAN:** 
@@ -176,7 +349,8 @@ if (interaction.commandName === 'help') {
         return await interaction.reply({
       content: `🗳️ **COMMANDS**
 
-🔹  /info - Info on the server
+🔹  /info - What is the server main info?
+🔹  /features - What are the server's main features?
 🔹  /vote - What websites can you vote on??
 🔹  /premium - What do our premium packages offer??
 

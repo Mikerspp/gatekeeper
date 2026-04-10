@@ -44,6 +44,9 @@ const commands = [
     new SlashCommandBuilder()
     .setName('premium')
     .setDescription('Info on our Premium Packages!'),
+     new SlashCommandBuilder()
+    .setName('features')
+    .setDescription('Check our Features!'),
 
 ];
 
