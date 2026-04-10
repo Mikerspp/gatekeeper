@@ -31,7 +31,7 @@ const commands = [
         .setRequired(true)),      
 
 
-        
+        //test
   new SlashCommandBuilder()
     .setName('vote')
     .setDescription('Feel free to vote every 12 hours!'),
