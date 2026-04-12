@@ -429,12 +429,9 @@ if (interaction.commandName === 'vote') {
 Help our server grow by voting on these sites. Receive in-game rewards for voting!
 You can vote for us on the following sites:
 
-🔹  https://top.l2jbrasil.com/index.php?a=in&u=Stayway 
+🔹  https://itopz.com/vote/325716
 🔹  https://l2network.eu/index.php?a=in&u=Stayway
 🔹  https://l2.hopzone.net/site/vote/107325/1
-🔹  https://l2top.org/server/l2ahyura/vote/
-🔹  https://www.l2servers.com/servers/vote-112840.php
-🔹  https://l2servers.com/index.php?a=in&u=Stayway
 
 ✅ Every vote counts. Thank you for your support!`,
       ephemeral: true // set to true if you want only the user to see it
