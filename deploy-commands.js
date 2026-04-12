@@ -16,7 +16,7 @@ const commands = [
         .setDescription('Message to send')
         .setRequired(true)),
 
-  new SlashCommandBuilder()
+/*  new SlashCommandBuilder()
     .setName('rules')
     .setDescription('Make the bot send a message to a channel')
     .addChannelOption(option =>
@@ -28,7 +28,21 @@ const commands = [
       option
         .setName('message')
         .setDescription('Message to send')
-        .setRequired(true)),      
+        .setRequired(true)),      */
+
+ /*   new SlashCommandBuilder()
+    .setName('installation')
+    .setDescription('Make the bot send a message to a channel')
+    .addChannelOption(option =>
+      option
+        .setName('channel')
+        .setDescription('Channel to send the message to')
+        .setRequired(true))
+    .addStringOption(option =>
+      option
+        .setName('message')
+        .setDescription('Message to send')
+        .setRequired(true)),    */
 
 
         //test
@@ -47,6 +61,7 @@ const commands = [
      new SlashCommandBuilder()
     .setName('features')
     .setDescription('Check our Features!'),
+    
 
 ];
 

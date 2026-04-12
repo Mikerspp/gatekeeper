@@ -200,7 +200,68 @@ await sendPaginated(interaction, pages);
   }
 
 
+if (interaction.commandName === 'installation') {
 
+
+
+    if (!allowedRoleId || !member?.roles?.cache?.has(allowedRoleId)) {
+    return interaction.reply({
+      content: '❌ You are not allowed to use this command.',
+      ephemeral: true
+    });
+  }
+  const channel = interaction.options.getChannel('channel');
+  const message = interaction.options.getString('message');
+  
+  if (!channel?.isTextBased()) {
+    return interaction.reply({
+      content: '❌ That channel cannot receive messages.',
+      ephemeral: true
+    });
+  }
+
+  const rulesmess = `Hello Traveler. I heard you need help with the installation!
+
+Please read the instructions carefully!! 
+And double check before you ask self-explanatory questions!
+
+
+:one:  Downloading the files
+           The first step is downloading both the game files (~7Gb) and the launcher! You can check them out at https://l2ahyura.com/downloads.php.
+           You may find it easier to download them through the links below :slight_smile:.
+
+
+[Full Game Client (MEGA)](https://mega.nz/file/ZvEQEJbK#RYFeAXesxPNCIXfGhFvrtvzmLP0e_S3ExP-ft8C7Bws)
+
+[Full Game Client (Google Drive)](https://drive.google.com/file/d/1QvjwZUP8EHZvt1TDJWoVDkzLoBm1EnpH/view?usp=drive_link)
+
+[L2Ahyura Launcher](https://l2ahyura.com/downloads/L2AhyuraLauncher.rar)
+
+:two:  Extracting the files
+           First, extract the game files in a folder of your choice, we recommend directly on your C: Drive (example C:/L2Ahyura) to make things simpler.
+           Afterwards proceed with extracting the whole launcher files inside your L2Ahyura folder, next to it's other folders (like picture below).
+
+https://cdn.discordapp.com/attachments/1492672010361241752/1492675334770917589/image.png?ex=69dc31bc&is=69dae03c&hm=97335045b42a93918f6b7a538daaad1ca0de276981da59cab6a722e0729bb57a&
+
+:three:  Updating the files
+           Run the AutoUpdater.exe (we recommend running it as an administrator the first time)
+           Press on Repair at least once (like picture below) and let the installer run it's course!
+
+:four:  Play the game!
+           You're now more than ready to launch the game! Press on **Play** and call it a day!! 
+           (Just make sure you already have an account... If you don't or if you're not sure about your credentials you can do it all from our [Login Page](https://l2ahyura.com/login.php)!!
+
+           `;
+
+  await channel.send(rulesmess);
+
+  return await interaction.reply({
+    content: `✅ Message sent to ${channel}`,
+    ephemeral: true
+  });
+
+
+}
 
 
 
